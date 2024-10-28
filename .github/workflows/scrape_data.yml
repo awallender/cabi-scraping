@@ -33,3 +33,16 @@ jobs:
 
       - name: Run R script
         run: Rscript scrape_station_status.R
+        
+      - name: Commit database changes
+        run: |
+          git config --global user.email 'actions@github.com'
+          git config --global user.name 'GitHub Actions'
+          git add lyft_bike_data.db
+          git commit -m 'Update Lyft bike data'
+          
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref }}
