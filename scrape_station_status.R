@@ -34,6 +34,8 @@ station_status <- station_status %>%
               names_prefix = "available_") %>% 
   mutate(last_reported = as_datetime(last_reported, tz = "America/New_York"))
 
+        message(paste("Attempting to write the following columns to db:", names(station_status)))
+
 # Write the data to the table
 dbWriteTable(conn = db, name = "station_status", value = station_status, 
              append = TRUE)
