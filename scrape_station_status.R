@@ -1,6 +1,9 @@
-# Load libraries using "pacman"
-library(pacman)
-p_load(tidyverse, jsonlite, magrittr, DBI, RSQLite)
+# Load libraries
+library(tidyverse)
+library(jsonlite)
+library(magrittr)
+library(DBI)
+library(RSQLite)
 
 # Connect to the database
 db <- dbConnect(RSQLite::SQLite(), "lyft_bike_data.db")
