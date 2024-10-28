@@ -1,6 +1,7 @@
 # Load libraries
 library(dplyr)
 library(tidyr)
+library(purrr)
 library(jsonlite)
 library(magrittr)
 library(DBI)
