@@ -20,13 +20,7 @@ jobs:
           r-version: 'release'
 
       - name: Install packages
-        run: |
-          install.packages("tidyverse")
-          install.packages("jsonlite")
-          install.packages("magrittr")
-          install.packages("jsonlite")
-          install.packages("DBI")
-          install.packages("RSQLite")
+        run: install.packages(c("tidyverse", "jsonlite", "magrittr", "DBI", "RSQLite"))
 
       - name: Run R script
         run: Rscript scrape_station_status.R
