@@ -23,6 +23,8 @@ station_status <- fromJSON("https://gbfs.lyft.com/gbfs/2.3/dca-cabi/en/station_s
 
 column_names <- names(station_status)
 
+message(paste("Currently have the following columns:", column_names)
+
 column_names <- column_names[column_names != c("count", "vehicle_type_id")]
 
 station_status <- station_status %>% 
