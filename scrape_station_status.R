@@ -19,8 +19,14 @@ station_status <- fromJSON("https://gbfs.lyft.com/gbfs/2.3/dca-cabi/en/station_s
   unnest(cols = vehicle_types_available) %>% 
   mutate(vehicle_type_id = case_when(vehicle_type_id == "1" ~ "bikes", 
                                      vehicle_type_id == "2" ~ "ebikes",
-                                     .default = vehicle_type_id)) %>% 
-  pivot_wider(id_cols = c(station_id, is_returning, is_renting:is_installed), 
+                                     .default = vehicle_type_id))
+
+column_names <- names(station_status)
+
+column_names <- column_names[column_names != c("count", "vehicle_type_id")]
+
+station_status <- station_status %>% 
+  pivot_wider(id_cols = all_of(column_names), 
               names_from = vehicle_type_id, 
               values_from = count,
               names_prefix = "available_") %>% 
