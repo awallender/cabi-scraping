@@ -2,6 +2,7 @@
 library(dplyr)
 library(tidyr)
 library(purrr)
+library(lubridate)
 library(jsonlite)
 library(magrittr)
 library(DBI)
