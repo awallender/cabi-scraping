@@ -18,11 +18,18 @@ jobs:
         with:
           r-version: 'release'
 
+      - name: Cache R packages
+        uses: actions/cache@v3
+        with:
+          path: ${{ env.R_LIBS_USER }}
+          key: ${{ runner.os }}-r-${{ hashFiles('**/R/*.R') }}
+          restore-keys: |
+            ${{ runner.os }}-r-
+
       - name: Install packages
+        if: steps.cache-r-packages.outputs.cache-hit != 'true'
         run: |
-          Rscript -e "install.packages(c('tidyverse', 'jsonlite', 'magrittr', 'DBI', 'RSQLite'))"
-          # Install any packages NOT on CRAN here, e.g.
-          # Rscript -e "remotes::install_github('your-username/your-package')"
+          Rscript -e "install.packages(c('dplyr', 'jsonlite', 'magrittr', 'DBI', 'RSQLite'))"
 
       - name: Run R script
         run: Rscript scrape_station_status.R
