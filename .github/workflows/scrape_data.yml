@@ -1,0 +1,31 @@
+name: Scrape and Store Lyft Bike Data
+
+on:
+  schedule:
+    - cron: '*/15 5-12,15-20 * * *' # Run every 15 min during certain periods
+
+jobs:
+  scrape_data:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Setup R
+        uses: r-lib/actions/setup-r@v2  
+
+        with:
+          r-version: 'release'
+
+      - name: Install packages
+        run: |
+          install.packages("tidyverse")
+          install.packages("jsonlite")
+          install.packages("magrittr")
+          install.packages("jsonlite")
+          install.packages("DBI")
+          install.packages("RSQLite")
+
+      - name: Run R script
+        run: Rscript scrape_station_status.R
