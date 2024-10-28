@@ -3,6 +3,7 @@ name: Scrape and Store Lyft Bike Data
 on:
   schedule:
     - cron: '*/15 5-12,15-20 * * *' # Run every 15 min during certain periods
+  workflow_dispatch:
 
 jobs:
   scrape_data:
