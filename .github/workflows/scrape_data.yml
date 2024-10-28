@@ -20,7 +20,9 @@ jobs:
 
       - name: Install packages
         run: |
-          install.packages(c("tidyverse", "jsonlite", "magrittr", "DBI", "RSQLite"))
+          Rscript -e "install.packages(c('tidyverse', 'jsonlite', 'magrittr', 'DBI', 'RSQLite'))"
+          # Install any packages NOT on CRAN here, e.g.
+          # Rscript -e "remotes::install_github('your-username/your-package')"
 
       - name: Run R script
         run: Rscript scrape_station_status.R
