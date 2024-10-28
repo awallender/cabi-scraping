@@ -1,5 +1,6 @@
 # Load libraries
-library(tidyverse)
+library(dplyr)
+library(tidyr)
 library(jsonlite)
 library(magrittr)
 library(DBI)
