@@ -23,8 +23,6 @@ station_status <- fromJSON("https://gbfs.lyft.com/gbfs/2.3/dca-cabi/en/station_s
 
 column_names <- names(station_status)
 
-message(paste("Currently have the following columns:", column_names)
-
 column_names <- column_names[column_names != c("count", "vehicle_type_id")]
 
 station_status <- station_status %>% 
@@ -33,8 +31,6 @@ station_status <- station_status %>%
               values_from = count,
               names_prefix = "available_") %>% 
   mutate(last_reported = as_datetime(last_reported, tz = "America/New_York"))
-
-        message(paste("Attempting to write the following columns to db:", names(station_status)))
 
 # Write the data to the table
 dbWriteTable(conn = db, name = "station_status", value = station_status, 
