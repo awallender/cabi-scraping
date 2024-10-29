@@ -23,7 +23,7 @@ station_status <- fromJSON("https://gbfs.lyft.com/gbfs/2.3/dca-cabi/en/station_s
 
 column_names <- names(station_status)
 
-column_names <- column_names[column_names != c("count", "vehicle_type_id")]
+column_names <- column_names[!column_names %in% c("count", "vehicle_type_id")]
 
 station_status <- station_status %>% 
   pivot_wider(id_cols = all_of(column_names), 
