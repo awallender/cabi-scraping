@@ -1,8 +1,8 @@
 name: Scrape and Store Lyft Bike Data
 
 on:
-  schedule:
-    - cron: '*/15 * * * *' 
+  #schedule:
+    #- cron: '*/15 * * * *' 
   workflow_dispatch:
 
 jobs:
